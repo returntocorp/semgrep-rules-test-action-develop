@@ -1,14 +1,9 @@
-# action.yml
-name: 'sgrep-run-tests'
-description: 'Run tests for sgrep rules repos'
+name: 'sgrep-run-tests-develop'
+description: '[develop] Run tests for sgrep rules repos'
 branding:
   icon: 'activity'
-  color: 'green'
+  color: 'red'
 inputs:
-  test:
-    description: 'file to execute'
-    required: true
-    default: 'test.py'
 outputs:
   results:
     description: 'test results'
