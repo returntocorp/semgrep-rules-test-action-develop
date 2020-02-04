@@ -1,4 +1,4 @@
-name: 'sgrep-run-tests-develop'
+name: 'sgrep-rules-test-develop'
 description: '[develop] Run tests for sgrep rules repos'
 branding:
   icon: 'activity'
