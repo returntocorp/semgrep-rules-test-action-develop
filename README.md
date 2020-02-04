@@ -16,11 +16,16 @@ The test results
 
 The exit code of `make test`
 
+### `output_dir`
+
+The directory of STDOUT and STDERROR files. Useful for uploading artifacts
+
 ## Example usage
 
 Put in `.github/workflows/sgrep-rules-test.yml`
 
 ```yaml
+
 name: sgrep-rules-test
 
 on: [push]
@@ -28,12 +33,15 @@ on: [push]
 jobs:
   self_test:
     runs-on: ubuntu-latest
-    name: A job to run sgrep rules tests
+    name: run sgrep rules tests
     steps:
       - uses: actions/checkout@v2
-      - name: run sgrep rules tests
+      - name: run tests
         id: sgrep-tests
-        uses: returntocorp/sgrep-run-tests-action-develop@master
-      - name: Get the output from tests
-        run: echo "results ${{ steps.sgrep-tests.outputs.results }}"
+        uses: returntocorp/sgrep-rules-test-action-develop@master
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: tests
+          path: ${{ steps.sgrep-tests.outputs.output_dir }}
 ```
