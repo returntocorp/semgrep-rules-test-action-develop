@@ -31,7 +31,12 @@ function main() {
     EXIT_CODE=$?
     set -e
     ## echo to STDERR so output shows up in GH action UI
+    >&2 echo "====== BEGIN STDOUT ======"
     cat $OUTPUT_STDOUT >&2
+    >&2 echo "====== END STDOUT ======"
+    >&2 echo "====== BEGIN STDERR ======"
+    cat $OUTPUT_STDERR >&2
+    >&2 echo "====== END STDERR ======"
     ## format string
     OUTPUT_FMT=$(cat $OUTPUT_STDOUT | sed 's/$/\\n/' | tr -d '\n')
     echo "::set-output name=results::${OUTPUT_FMT}"
