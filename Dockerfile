@@ -1,4 +1,4 @@
-FROM returntocorp/sgrep:develop
+FROM returntocorp/semgrep:develop
 
 RUN apk add make python3
 

@@ -1,6 +1,6 @@
-# [develop] sgrep-rules-test-develop action
+# [develop] semgrep-rules-test-develop action
 
-This action runs the tests for sgrep rules repos. Runs `make test`
+This action runs the tests for semgrep rules repos. Runs `make test`
 
 ## Inputs
 
@@ -22,26 +22,26 @@ The directory of STDOUT and STDERROR files. Useful for uploading artifacts
 
 ## Example usage
 
-Put in `.github/workflows/sgrep-rules-test.yml`
+Put in `.github/workflows/semgrep-rules-test.yml`
 
 ```yaml
 
-name: sgrep-rules-test
+name: semgrep-rules-test
 
 on: [push]
 
 jobs:
   self_test:
     runs-on: ubuntu-latest
-    name: run sgrep rules tests
+    name: run semgrep rules tests
     steps:
       - uses: actions/checkout@v2
       - name: run tests
-        id: sgrep-tests
-        uses: returntocorp/sgrep-rules-test-action-develop@master
+        id: semgrep-tests
+        uses: returntocorp/semgrep-rules-test-action-develop@master
       - uses: actions/upload-artifact@v1
         if: always()
         with:
           name: tests
-          path: ${{ steps.sgrep-tests.outputs.output_dir }}
+          path: ${{ steps.semgrep-tests.outputs.output_dir }}
 ```

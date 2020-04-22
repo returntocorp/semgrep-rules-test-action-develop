@@ -1,5 +1,5 @@
-name: 'sgrep-rules-test-develop'
-description: '[develop] Run tests for sgrep rules repos'
+name: 'semgrep-rules-test-develop'
+description: '[develop] Run tests for semgrep rules repos'
 branding:
   icon: 'activity'
   color: 'red'
