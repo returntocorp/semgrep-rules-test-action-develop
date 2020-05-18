@@ -25,6 +25,10 @@ function main() {
 
     mkdir -p $OUTPUT_DIR
     echo $PATH
+    which semgrep
+    which python
+    cat `which semgrep`
+    env
     semgrep --version
     set +e
     # Run `make test`
