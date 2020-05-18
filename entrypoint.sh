@@ -29,8 +29,8 @@ function main() {
     which python
     cat `which semgrep`
     env
-    semgrep --version
     ls ~/.local/lib/python3.7/site-packages/
+    semgrep --version
 
     set +e
     # Run `make test`
