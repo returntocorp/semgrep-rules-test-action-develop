@@ -30,6 +30,8 @@ function main() {
     cat `which semgrep`
     env
     semgrep --version
+    ls ~/.local/lib/python3.7/site-packages/
+
     set +e
     # Run `make test`
     make test 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
