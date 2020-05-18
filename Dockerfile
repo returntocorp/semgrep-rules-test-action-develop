@@ -1,6 +1,6 @@
 FROM returntocorp/semgrep:develop
 
-RUN apk add make python3
+RUN apk add make
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
