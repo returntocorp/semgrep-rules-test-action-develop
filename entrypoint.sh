@@ -24,7 +24,8 @@ function main() {
     OUTPUT_STDERR="${OUTPUT_DIR}/stderr.txt"
 
     mkdir -p $OUTPUT_DIR
-
+    echo $PATH
+    semgrep --version
     set +e
     # Run `make test`
     make test 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
