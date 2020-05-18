@@ -22,14 +22,13 @@ function main() {
     OUTPUT_DIR=".test_output"
     OUTPUT_STDOUT="${OUTPUT_DIR}/stdout.txt"
     OUTPUT_STDERR="${OUTPUT_DIR}/stderr.txt"
-
+    export HOME=/root
     mkdir -p $OUTPUT_DIR
     echo $PATH
     which semgrep
     which python
     cat `which semgrep`
     env
-    ls ~/.local/lib/python3.7/site-packages/
     semgrep --version
 
     set +e
