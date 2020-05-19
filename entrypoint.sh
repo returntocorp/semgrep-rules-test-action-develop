@@ -28,6 +28,8 @@ function main() {
     # We should probably fix that, but Github also shouldn't override the home directory.
     export HOME=/root
 
+    mkdir -p $OUTPUT_DIR
+
     set +e
     # Run `make test`
     make test 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
