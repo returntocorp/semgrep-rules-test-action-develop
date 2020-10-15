@@ -39,12 +39,12 @@ function main() {
     # Run 'make output'
     >&2 echo $PWD
     make output 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
-    ls $PWD
     EXIT_CODE=$?
     set -e
     ## echo test results to STDERR so output shows up in GH action UI
     >&2 echo "====== BEGIN TEST STDOUT ======"
     cat $OUTPUT_TEST_STDOUT >&2
+    ls $PWD
     >&2 echo "====== END TEST STDOUT ======"
     >&2 echo "====== BEGIN TEST STDERR ======"
     cat $OUTPUT_TEST_STDERR >&2
