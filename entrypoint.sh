@@ -22,8 +22,6 @@ function main() {
     OUTPUT_DIR=".test_output"
     OUTPUT_STDOUT="${OUTPUT_DIR}/stdout.txt"
     OUTPUT_STDERR="${OUTPUT_DIR}/stderr.txt"
-    OUTPUT_FILE_JSON="semgrep_runs_output.json"
-    OUTPUT_FILE_TAR="semgrep_runs_output.tar.gz"
     OUTPUT_TEST_STDOUT="${OUTPUT_DIR}/stdout_test.txt"
     OUTPUT_TEST_STDERR="${OUTPUT_DIR}/stderr_test.txt"
 
@@ -35,11 +33,9 @@ function main() {
     mkdir -p $OUTPUT_DIR
 
     set +e
-    set -x
     # Run `make test`
     make test 1>$OUTPUT_TEST_STDOUT 2>$OUTPUT_TEST_STDERR
     # Run 'make output'
-    >&2 echo $PWD
     make output 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
     EXIT_CODE=$?
     set -e
@@ -57,8 +53,7 @@ function main() {
     >&2 echo "====== BEGIN OUTPUT STDERR ======"
     cat $OUTPUT_STDERR >&2
     >&2 echo "====== END OUTPUT STDERR ======"
-    ls $PWD
-    find / -name 'semgrep_runs_output.tar.gz'
+    ## copy the examples tar file into the $PWD
     cp /src/semgrep_runs_output.tar.gz /github/workspace/semgrep_runs_output.tar.gz
     # format string
     OUTPUT_FMT=$(cat $OUTPUT_TEST_STDOUT | sed 's/$/\\n/' | tr -d '\n')
