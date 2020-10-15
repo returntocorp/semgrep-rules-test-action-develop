@@ -22,7 +22,7 @@ function main() {
     OUTPUT_DIR=".test_output"
     OUTPUT_STDOUT="${OUTPUT_DIR}/stdout.txt"
     OUTPUT_STDERR="${OUTPUT_DIR}/stderr.txt"
-    
+
     # Github overwrites the home directory and since we install semgrep
     # to ~/.local/bin, if you change the home directory everything breaks.
     # We should probably fix that, but Github also shouldn't override the home directory.
@@ -33,6 +33,8 @@ function main() {
     set +e
     # Run `make test`
     make test 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
+    # Run 'make output'
+    make output 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
     EXIT_CODE=$?
     set -e
     ## echo to STDERR so output shows up in GH action UI
