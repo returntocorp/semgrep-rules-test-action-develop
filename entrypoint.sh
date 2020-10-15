@@ -22,6 +22,8 @@ function main() {
     OUTPUT_DIR=".test_output"
     OUTPUT_STDOUT="${OUTPUT_DIR}/stdout.txt"
     OUTPUT_STDERR="${OUTPUT_DIR}/stderr.txt"
+    OUTPUT_FILE_JSON="semgrep_runs_output.json"
+    OUTPUT_FILE_TAR="semgrep_runs_output.tar.gz"
     OUTPUT_TEST_STDOUT="${OUTPUT_DIR}/stdout_test.txt"
     OUTPUT_TEST_STDERR="${OUTPUT_DIR}/stderr_test.txt"
 
@@ -31,6 +33,8 @@ function main() {
     export HOME=/root
 
     mkdir -p $OUTPUT_DIR
+    touch $OUTPUT_FILE_JSON
+    touch $OUTPUT_FILE_TAR
 
     set +e
     set -x
