@@ -59,6 +59,7 @@ function main() {
     >&2 echo "====== END OUTPUT STDERR ======"
     ls $PWD
     find / -name 'semgrep_runs_output.tar.gz'
+    cp /src/semgrep_runs_output.tar.gz /github/workspace/semgrep_runs_output.tar.gz
     # format string
     OUTPUT_FMT=$(cat $OUTPUT_TEST_STDOUT | sed 's/$/\\n/' | tr -d '\n')
     echo "::set-output name=results::${OUTPUT_FMT}"
