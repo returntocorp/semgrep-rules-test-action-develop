@@ -22,6 +22,8 @@ function main() {
     OUTPUT_DIR=".test_output"
     OUTPUT_STDOUT="${OUTPUT_DIR}/stdout.txt"
     OUTPUT_STDERR="${OUTPUT_DIR}/stderr.txt"
+    OUTPUT_TEST_STDOUT="${OUTPUT_DIR}/stdout_test.txt"
+    OUTPUT_TEST_STDERR="${OUTPUT_DIR}/stderr_test.txt"
 
     # Github overwrites the home directory and since we install semgrep
     # to ~/.local/bin, if you change the home directory everything breaks.
@@ -32,19 +34,26 @@ function main() {
 
     set +e
     # Run `make test`
-    make test 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
+    make test 1>$OUTPUT_TEST_STDOUT 2>$OUTPUT_TEST_STDERR
     # Run 'make output'
     >&2 echo $PWD
     make output 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
     EXIT_CODE=$?
     set -e
-    ## echo to STDERR so output shows up in GH action UI
-    >&2 echo "====== BEGIN STDOUT ======"
+    ## echo test results to STDERR so output shows up in GH action UI
+    >&2 echo "====== BEGIN TEST STDOUT ======"
+    cat $OUTPUT_TEST_STDOUT >&2
+    >&2 echo "====== END TEST STDOUT ======"
+    >&2 echo "====== BEGIN TEST STDERR ======"
+    cat $OUTPUT_TEST_STDERR >&2
+    >&2 echo "====== END TEST STDERR ======"
+    ## echo output results to STDERR so output shows up in GH action UI
+    >&2 echo "====== BEGIN OUTPUT STDOUT ======"
     cat $OUTPUT_STDOUT >&2
-    >&2 echo "====== END STDOUT ======"
-    >&2 echo "====== BEGIN STDERR ======"
+    >&2 echo "====== END OUTPUT STDOUT ======"
+    >&2 echo "====== BEGIN OUTPUT STDERR ======"
     cat $OUTPUT_STDERR >&2
-    >&2 echo "====== END STDERR ======"
+    >&2 echo "====== END OUTPUT STDERR ======"
     ## format string
     OUTPUT_FMT=$(cat $OUTPUT_STDOUT | sed 's/$/\\n/' | tr -d '\n')
     echo "::set-output name=results::${OUTPUT_FMT}"
