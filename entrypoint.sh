@@ -44,7 +44,6 @@ function main() {
     ## echo test results to STDERR so output shows up in GH action UI
     >&2 echo "====== BEGIN TEST STDOUT ======"
     cat $OUTPUT_TEST_STDOUT >&2
-    ls $PWD
     >&2 echo "====== END TEST STDOUT ======"
     >&2 echo "====== BEGIN TEST STDERR ======"
     cat $OUTPUT_TEST_STDERR >&2
@@ -56,6 +55,7 @@ function main() {
     >&2 echo "====== BEGIN OUTPUT STDERR ======"
     cat $OUTPUT_STDERR >&2
     >&2 echo "====== END OUTPUT STDERR ======"
+    ls $PWD
     # format string
     OUTPUT_FMT=$(cat $OUTPUT_TEST_STDOUT | sed 's/$/\\n/' | tr -d '\n')
     echo "::set-output name=results::${OUTPUT_FMT}"
