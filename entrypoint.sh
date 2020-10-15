@@ -34,6 +34,7 @@ function main() {
     # Run `make test`
     make test 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
     # Run 'make output'
+    >&2 echo $PWD
     make output 1>$OUTPUT_STDOUT 2>$OUTPUT_STDERR
     EXIT_CODE=$?
     set -e
