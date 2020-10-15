@@ -33,8 +33,6 @@ function main() {
     export HOME=/root
 
     mkdir -p $OUTPUT_DIR
-    touch $OUTPUT_FILE_JSON
-    touch $OUTPUT_FILE_TAR
 
     set +e
     set -x
@@ -60,6 +58,7 @@ function main() {
     cat $OUTPUT_STDERR >&2
     >&2 echo "====== END OUTPUT STDERR ======"
     ls $PWD
+    find / -name 'semgrep_runs_output.tar.gz'
     # format string
     OUTPUT_FMT=$(cat $OUTPUT_TEST_STDOUT | sed 's/$/\\n/' | tr -d '\n')
     echo "::set-output name=results::${OUTPUT_FMT}"
